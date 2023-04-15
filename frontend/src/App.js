@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import SearchBar from './SearchBar';
+import TextBlock from './TextBlock';
+import Box from './Box';
+import SmallBox from './SmallBox';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TextBlock />
+      <SearchBar />
+      <Box title="User Based CF" content="This is the content for box 1.">
+        <SmallBox color="red" content="1" />
+        <SmallBox color="green" content="2" />
+        <SmallBox color="blue" content="3" />
+      </Box>
+      <Box title="Item Based CF" content="This is the content for box 2."/>
+      <Box title="Content Based" content="This is the content for box 3."/>
+      {/* Add the rest of your components here */}
     </div>
   );
 }
