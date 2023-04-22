@@ -1,12 +1,16 @@
 import React, { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Dropdown } from 'react-bootstrap';
-import './Register.css'
+import './Register.css';
+import Login from '../Login/Login'
+import axios from 'axios';
 
 export default function (props) {
 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [user, setUser] = useState();
+  //const navigate = useNavigate();
 
   const options = [
     "Actions",
@@ -20,7 +24,7 @@ export default function (props) {
     username: '',
     password: '',
     genres: [],
-    isOver18: false,
+    isOver18: 0,
     movieShow: ''
   });
 
@@ -38,8 +42,7 @@ export default function (props) {
   };
 
   const handleAgeChange = (event) => {
-    const isOver18 = event.target.checked;
-    setFormData({ ...formData, isOver18 });
+    setFormData({ ...formData, isOver18: parseInt(event.target.value) });
   };
 
   const handleMovieShowChange = (event) => {
@@ -50,13 +53,23 @@ export default function (props) {
     event.preventDefault();
     console.log(formData);
 
-    
+    axios.post('http://127.0.0.1:5000/register', formData)
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
   };
 
+  // const handleLoginClick = () => {
+  //   navigate('/login');
+  // };
 
 
    return (
       <div className="Auth-form-container">
+        <h1>Registration</h1>
         <form onSubmit={handleSubmit}>
       <label>
         Username:
@@ -78,7 +91,7 @@ export default function (props) {
       </label>
       <label>
         Are you over 18?
-        <input type="checkbox" checked={formData.isOver18} onChange={handleAgeChange} />
+        <input type="number" value={formData.isOver18} onChange={handleAgeChange} />
       </label>
       <label>
         Movie/Show:
@@ -89,6 +102,7 @@ export default function (props) {
       </label>
       <button type="submit">Register</button>
     </form>
+    {/* <p>Already have an account? <a href="/login" onClick={handleLoginClick}>Login</a></p> */}
       </div>
     )
 }
