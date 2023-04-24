@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify,json
 from flask_cors import CORS
 from test1 import recommend_animes_based_on_search, search_animes, filter_animes_by_age, preprocess_title_and_genre, df_anime
-
+from Recommendation import recommend_animes_for_user, find_k_similar_users, recommend_animes_for_user,find_k_similar_users,loaded_user_similarity_matrix_sparse,recommend_animes_by_genres_only,is_18_above,recommend_animes_by_titles,get_anime_title,animes_copy,get_anime_id,extract_genres,get_genre_score
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -33,9 +33,18 @@ def search():
         searched_animes = search_animes(df_anime, search_query, N)
         searched_animes = filter_animes_by_age(searched_animes, user_age, restricted_genres)
         response_data = searched_animes[['anime_id', 'title','img_url','link']].to_dict('records')
+        
         return jsonify(response_data)
     else:
         return "Send a POST request with JSON data to this endpoint."
+
+@app.route('/recommendations', methods=['GET'])
+def get_recommendations():
+    user = 'edgewalker00'
+    recommendations = recommend_animes_for_user(user)
+    recommended_anime_df = animes_copy[animes_copy['title'].isin(recommendations)]
+    response_data = recommended_anime_df[['title', 'img_url', 'link']].to_dict('records')
+    return jsonify(response_data)
 
 
 @app.route('/ucf',methods=['GET'])
