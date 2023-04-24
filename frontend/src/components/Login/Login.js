@@ -1,11 +1,13 @@
 import React, { FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { BrowserRouter, Routes, Router, Route, Switch, Redirect } from "react-router-dom";
+import Dashboard from '../Dashboard/Dashboard';
 
-export default function (props) {
+function Login (props) {
 
     const [user, setUser] = useState();
-    const navigate = useNavigate();
+    const history = useHistory();
     const [formData, setFormData] = useState({
         username: '',
         password: ''
@@ -15,23 +17,18 @@ export default function (props) {
     setFormData({ ...formData, username: event.target.value });
     };
 
-    const handlePasswordChange = (event) => {
+    const handlePasswordChange = (event) => { 
     setFormData({ ...formData, password: event.target.value });
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(formData);
 
         axios.post('http://127.0.0.1:5000/login', formData)
         .then(response => {
-            if(response.data == 'Logged in'){
-                console.log("logged in")
-                navigate('/dashboard');
-            }
-            else{
-                console.log("not logged in")
-            }
+          console.log("response.data: ", response.data)
+            props.onSendData(response.data)
+            
         })
         .catch(error => {
             console.error(error);
@@ -55,3 +52,5 @@ export default function (props) {
       </div>
     )
 }
+
+export default Login;

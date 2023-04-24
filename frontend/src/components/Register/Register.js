@@ -1,15 +1,18 @@
 import React, { FC, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button, Dropdown } from 'react-bootstrap';
 import './Register.css';
 import Login from '../Login/Login'
 import axios from 'axios';
+import { BrowserRouter, Routes, Router, Route, Switch, Redirect } from "react-router-dom";
+import Dashboard from '../Dashboard/Dashboard';
 
 export default function (props) {
 
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [user, setUser] = useState();
+  const history = useHistory();
   //const navigate = useNavigate();
 
   const options = [
@@ -56,15 +59,13 @@ export default function (props) {
     axios.post('http://127.0.0.1:5000/register', formData)
   .then(response => {
     console.log(response.data);
+    localStorage.setItem("user", JSON.stringify(response.data));
+    history.push('/dashboard');
   })
   .catch(error => {
     console.error(error);
   });
   };
-
-  // const handleLoginClick = () => {
-  //   navigate('/login');
-  // };
 
 
    return (
@@ -102,7 +103,8 @@ export default function (props) {
       </label>
       <button type="submit">Register</button>
     </form>
-    {/* <p>Already have an account? <a href="/login" onClick={handleLoginClick}>Login</a></p> */}
       </div>
+
+      
     )
 }

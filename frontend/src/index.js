@@ -2,12 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import { Routes, Switch, Redirect, Link } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, Route } from 'react-router-dom';
+import Dashboard from './components/Dashboard/Dashboard';
+import Login from './components/Login/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter forceRefresh={true}>
+      <Switch>
+        <Route path="/" component={App} />
+        <Redirect from="*" to="/login"/>
+      </Switch>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
