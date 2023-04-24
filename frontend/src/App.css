@@ -34,4 +34,29 @@
   .anime-title a:hover {
     color: #007bff;
   }
+
+  .recommended-anime-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .recommended-anime-card {
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .recommended-anime-img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .recommended-anime-title {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
   
