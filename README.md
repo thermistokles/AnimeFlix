@@ -68,5 +68,6 @@ This project was developed by:
 2. Amey More
 3. Padmesh Naik
 4. Vignesh Sundaram  
+
 as a part of Information Retrieval final project at Worcester Polytechnic Institute.
 
