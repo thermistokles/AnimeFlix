@@ -46,13 +46,17 @@ https://wpi0-my.sharepoint.com/:u:/g/personal/amore_wpi_edu/EYPmO7zVD6VLprDZO3zv
 Alternatively, you can train and export these files from AnimeFlix/NoteBooks
 
 Step 3: Start the backend server
+```
 cd backend
 flask --app main.py --debug run
+```
 
 Step 4: Start the frontend
+```
 cd frontend
 npm install
 npm start
+```
 
 Step 5: Navigate to http://localhost:3000 in your browser to access the web application
 
@@ -63,6 +67,6 @@ This project was developed by:
 1. Akanksha Pawar
 2. Amey More
 3. Padmesh Naik
-4. Vignesh Sundaram
+4. Vignesh Sundaram  
 as a part of Information Retrieval final project at Worcester Polytechnic Institute.
 
