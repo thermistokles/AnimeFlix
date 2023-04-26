@@ -22,6 +22,12 @@ This is a web-based anime recommendation system that uses React for the frontend
 ```
 AnimeFlix
 
+-NoteBooks
+--ColdStart-UserBased CF
+--Content Based Filtering
+--Hybrid
+NN-ItemBased CF
+
 -backend
 --models
 --util
@@ -38,7 +44,7 @@ AnimeFlix
 
 ## Installation
 
-step 1: Download the git repository.
+Step 1: Download the git repository.
 git clone https://github.com/thermistokles/AnimeFlix
 
 Step 2: Download the utility files and put them in AnimeFlix/backend/util
