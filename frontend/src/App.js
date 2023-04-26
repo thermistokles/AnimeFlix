@@ -1,36 +1,29 @@
-import SearchBar from './SearchBar';
-import TextBlock from './TextBlock';
-import Box from './Box';
-import SmallBox from './SmallBox';
-import React, { useState } from 'react';
-import SearchResults from './searchResults';
+import logo from './logo.svg';
+import React, { FC, useState } from 'react';
+import './App.css';
+import { Route, Switch, BrowserRouter, Redirect } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
-
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearchChange = (value) => {
-    setSearchTerm(value);
-  };
-
-  const updateSearchTerm = (value) => {
-    setSearchTerm(value);
-  };
+  const history = useHistory();
 
   return (
-    <div>
-      <TextBlock />
-      <SearchBar onSearchChange={handleSearchChange} updateSearchTerm={updateSearchTerm} />
-      <SearchResults searchTerm={searchTerm} />
-      <Box title="User Based CF" content="This is the content for box 1.">
-        <SmallBox color="red" content="1" />
-        <SmallBox color="green" content="2" />
-        <SmallBox color="blue" content="3" />
-      </Box>
-      <Box title="Item Based CF" content="This is the content for box 2."/>
-      <Box title="Content Based" content="This is the content for box 3."/>
-      {/* Add the rest of your components here */}
-    </div>
+      // <Switch>
+      //   <Route path="/dashboard" component={Dashboard}><Dashboard data={userData} /></Route>
+      //   <Route path="/login"><Login onSendData={handleUserData}/></Route>
+      //   <Route path="/register" component={Register} />
+      // </Switch>
+
+    
+      <Switch>
+        <Route exact path="/"><Login /></Route>
+        <Route path="/dashboard" ><Dashboard /></Route>
+        <Route path="/login"><Login /></Route>
+        <Route path="/register"><Register /></Route>
+      </Switch>
   );
 }
 
