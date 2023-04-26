@@ -26,7 +26,7 @@ AnimeFlix
 --ColdStart-UserBased CF
 --Content Based Filtering
 --Hybrid
-NN-ItemBased CF
+--NN-ItemBased CF
 
 -backend
 --models
